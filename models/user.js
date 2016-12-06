@@ -1,4 +1,4 @@
-var mongoose = require('../lib/mongoose');
+var mongoose = require('lib/mongoose');
 
 var userShema = new mongoose.Schema({
     username : {
