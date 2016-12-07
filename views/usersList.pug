@@ -1,0 +1,18 @@
+html
+    head
+        title=title
+        link(href='/vendor/bootstrap/dist/css/bootstrap.css', rel='stylesheet')
+        link(href='/css/app.css', rel='stylesheet')
+        script
+    body
+        include ./topItem.pug
+        div.container
+            div.jumbotron
+                ul
+                each val in list
+                    li
+                        ol
+                            li= val._id
+                            li= val.username
+                            li= val.__v
+

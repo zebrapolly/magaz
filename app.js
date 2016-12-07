@@ -1,36 +1,13 @@
 var express = require('express');
 var path = require('path');
 var mongoose = require('lib/mongoose');
+var bodyParser = require('body-parser');
 
 var app = express();
 app.set('views', './views');
 app.set('view engine', 'pug');
 
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(bodyParser.urlencoded({ extended: false }))
 
-app.get('/', function (req, res, next) {
-    res.render('index', { title: 'Hey', message: 'Hello there!' });
-});
-
-var User = require('models/user').User;
-app.get('/add/:name', function(req, res, next){
-    var user = new User({
-        username: "dfssdfs"
-    });
-    user.save(function(err){
-        if (err) throw err;
-    });
-    res.send(user);
-});
-
-app.get('/users', function(req, res, next){
-    User.find({}, function(err, users){
-        if (err) return next(err);
-        res.json(users);
-    })
-});
-
-
-app.listen(3000, function () {
-    console.log('Example app listening on port 3000!')
-});
+require('routes')(app);
